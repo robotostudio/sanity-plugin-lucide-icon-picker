@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.settings",
+  "include": ["./src"],
+  "compilerOptions": {
+    // Type checking happens via `tsc --noEmit`; skipping it here keeps .d.ts generation fast.
+    "noCheck": true,
+    // pkg-utils reads the JSX transform from here. "preserve" (inherited from tsconfig.settings)
+    // would emit raw, untransformed JSX into dist while the build still reports success.
+    "jsx": "react-jsx"
+  }
+}

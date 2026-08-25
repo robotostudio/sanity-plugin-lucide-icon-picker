@@ -1,0 +1,82 @@
+{
+  "name": "@robotostudio/sanity-plugin-lucide-icon-picker",
+  "version": "1.0.0",
+  "description": "Pick and preview Lucide icons in Sanity Studio v6",
+  "keywords": [
+    "icons",
+    "lucide",
+    "lucide-icons",
+    "sanity",
+    "sanity-plugin",
+    "sanity-studio"
+  ],
+  "license": "MIT",
+  "author": "Roboto Studio",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.js",
+      "./package.json": "./package.json"
+    },
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "plugin-kit verify-package --silent && pkg-utils build --strict --check --clean",
+    "format": "oxfmt",
+    "link-watch": "plugin-kit link-watch",
+    "lint": "oxlint",
+    "prepublishOnly": "npm run build",
+    "watch": "pkg-utils watch --strict"
+  },
+  "dependencies": {
+    "@sanity/icons": "^5.2.1",
+    "@sanity/ui": "^4.0.3",
+    "lucide-react": "^1.34.0"
+  },
+  "devDependencies": {
+    "@sanity/browserslist-config": "^1.0.5",
+    "@sanity/pkg-utils": "^12.3.0",
+    "@sanity/plugin-kit": "^10.0.8",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "oxc-transform-react": "^0.145.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.80.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.10.1",
+    "styled-components": "^6.5.3",
+    "typescript": "^7.0.2"
+  },
+  "peerDependencies": {
+    "react": "^19.2",
+    "sanity": "^6"
+  },
+  "browserslist": "extends @sanity/browserslist-config",
+  "engines": {
+    "node": ">=20.19 <22 || >=22.12"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "sanityPlugin": {
+    "verifyPackage": {
+      "tsconfig": false
+    }
+  }
+}
