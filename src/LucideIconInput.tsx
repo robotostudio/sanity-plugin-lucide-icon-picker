@@ -4,8 +4,8 @@ import {SyncIcon} from '@sanity/icons/Sync'
 import {TrashIcon} from '@sanity/icons/Trash'
 import {Box, Button, Card, Flex, Text} from '@sanity/ui'
 import {Menu, MenuButton, MenuItem} from '@sanity/ui/menu'
-import type {IconName} from 'lucide-react/dynamic'
-import {useCallback, useMemo, useState} from 'react'
+import type {IconName} from 'lucide-react/dynamic.js'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {type StringInputProps, set, unset} from 'sanity'
 
 import {IconPickerDialog} from './IconPickerDialog'
@@ -34,6 +34,21 @@ export function LucideIconInput(props: StringInputProps) {
   } = elementProps
 
   const [isPickerOpen, setIsPickerOpen] = useState(false)
+
+  // Return focus to the field when the picker closes, however it closed. The Dialog cannot do
+  // this itself: choosing an icon swaps the trigger from the "Select icon" button to the
+  // selected-icon card, so the element it captured on open no longer exists. Both triggers
+  // carry the id Sanity gave the field, so look it up again rather than holding a ref.
+  const wasPickerOpen = useRef(false)
+  const {id: fieldId} = elementProps
+
+  useEffect(() => {
+    if (wasPickerOpen.current && !isPickerOpen) {
+      document.getElementById(fieldId)?.focus()
+    }
+
+    wasPickerOpen.current = isPickerOpen
+  }, [fieldId, isPickerOpen])
 
   const names = useMemo(
     () => restrictToAllowed(readAllowedIcons(schemaType.options)),

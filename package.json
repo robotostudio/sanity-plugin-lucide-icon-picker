@@ -38,6 +38,7 @@
     "link-watch": "plugin-kit link-watch",
     "lint": "oxlint",
     "prepublishOnly": "npm run build",
+    "test": "node --test",
     "watch": "pkg-utils watch --strict"
   },
   "dependencies": {

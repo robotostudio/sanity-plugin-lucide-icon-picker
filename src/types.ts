@@ -1,4 +1,4 @@
-import type {IconName} from 'lucide-react/dynamic'
+import type {IconName} from 'lucide-react/dynamic.js'
 
 /**
  * Options accepted by the `lucide-icon` schema type.

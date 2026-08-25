@@ -91,6 +91,21 @@ hyphenation and draw the same glyph — `arrow-down-0-1` / `arrow-down-01`, `gri
 `grid-2-x-2`, `axis-3d` / `axis-3-d`. Both spellings are valid and Lucide ships no metadata
 saying which is preferred, so the picker lists both.
 
+## Keyboard
+
+The picker is fully operable without a mouse. Tab reaches the grid as a single stop, the arrow
+keys move in two dimensions, Home and End jump to the ends of the result set, Enter or Space
+selects, and Escape closes. Arrow-down from the search field drops straight into the grid, and
+focus returns to the field when the dialog closes.
+
+## Development
+
+```sh
+pnpm test     # node --test
+pnpm lint     # oxlint
+pnpm build    # verify-package + pkg-utils
+```
+
 ## Migrating from `sanity-plugin-lucide-icon-picker`
 
 If you are moving off the unmaintained community plugin, **check your content first**. That

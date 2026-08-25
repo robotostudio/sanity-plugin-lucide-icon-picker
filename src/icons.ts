@@ -1,4 +1,4 @@
-import {type IconName, iconNames} from 'lucide-react/dynamic'
+import {type IconName, iconNames} from 'lucide-react/dynamic.js'
 
 /**
  * Every icon the picker can offer.

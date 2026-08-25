@@ -1,4 +1,4 @@
-import {DynamicIcon, type IconName} from 'lucide-react/dynamic'
+import {DynamicIcon, type IconName} from 'lucide-react/dynamic.js'
 
 interface LucideGlyphProps {
   name: IconName
