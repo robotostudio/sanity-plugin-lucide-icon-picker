@@ -10,6 +10,7 @@ import {
   type KeyboardEvent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -25,6 +26,9 @@ import {LucideGlyph} from './LucideGlyph'
 const PAGE_SIZE = 120
 
 const SEARCH_DEBOUNCE_MS = 120
+
+/** How far beyond the visible area to keep rendered, so scrolling has something to land on. */
+const OVERSCAN_PX = 300
 
 interface IconPickerDialogProps {
   id: string
@@ -163,6 +167,23 @@ function IconGrid({results, scrollElement, selected, onSelect}: IconGridProps) {
     gridRef.current?.querySelectorAll<HTMLElement>('[role="option"]')[activeIndex]?.focus()
   }, [activeIndex, visibleCount])
 
+  // One page rarely fills a tall dialog, and the sentinel below the grid then fires as soon as
+  // it is observed — repeatedly, since each page still leaves it in view. That reads as the grid
+  // restructuring two or three times just after opening. Top the window up here instead:
+  // useLayoutEffect runs before the browser paints, so the fill is invisible, and it adapts to
+  // the viewport rather than guessing a page size that happens to be tall enough.
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+
+    if (!grid || !scrollElement || visibleCount >= results.length) {
+      return
+    }
+
+    if (grid.scrollHeight < scrollElement.clientHeight + OVERSCAN_PX) {
+      setVisibleCount((current) => Math.min(current + PAGE_SIZE, results.length))
+    }
+  }, [results.length, scrollElement, visibleCount])
+
   // Grow the window as the sentinel comes into view, so a glyph is only fetched once the user
   // has actually scrolled far enough to need it.
   useEffect(() => {
@@ -178,7 +199,7 @@ function IconGrid({results, scrollElement, selected, onSelect}: IconGridProps) {
           setVisibleCount((current) => Math.min(current + PAGE_SIZE, results.length))
         }
       },
-      {root: scrollElement, rootMargin: '300px'},
+      {root: scrollElement, rootMargin: `${OVERSCAN_PX}px`},
     )
 
     observer.observe(sentinel)
