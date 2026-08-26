@@ -4,7 +4,7 @@ import {describe, test} from 'node:test'
 
 import {isIconName} from '../src/icons.ts'
 
-const map = JSON.parse(
+const map: Record<string, string> = JSON.parse(
   readFileSync(new URL('../scripts/legacy-name-map.json', import.meta.url), 'utf8'),
 )
 
@@ -43,7 +43,7 @@ describe('legacy name map', () => {
   test('every mapping differs only in hyphenation, so no icon silently changes', () => {
     // The old plugin dropped separators before digits; it never picked a different icon. A
     // mapping that changed more than hyphens would mean rewriting content to the wrong glyph.
-    const flat = (name) => name.replace(/-/g, '')
+    const flat = (name: string) => name.replace(/-/g, '')
     const suspicious = Object.entries(map).filter(([from, to]) => flat(from) !== flat(to))
 
     deepStrictEqual(suspicious, [])

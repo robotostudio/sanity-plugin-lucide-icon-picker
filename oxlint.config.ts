@@ -8,5 +8,11 @@ export default {
       files: ['scripts/**'],
       rules: {'no-console': 'off'},
     },
+    {
+      // `node:test` returns promises from `describe`/`test` by design and tracks them itself;
+      // awaiting them at the top level is not how the runner is meant to be used.
+      files: ['test/**'],
+      rules: {'typescript/no-floating-promises': 'off'},
+    },
   ],
 }

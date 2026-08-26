@@ -1,2 +1,5 @@
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  # esbuild's postinstall only fetches its native binary. Nothing here needs it: pkg-utils
+  # builds through rolldown/oxc, and esbuild is pulled in solely by browserslist-to-esbuild,
+  # which just maps browserslist queries to target strings. The build passes without it.
+  esbuild: false

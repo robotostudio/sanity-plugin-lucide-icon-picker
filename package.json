@@ -50,6 +50,7 @@
     "@sanity/browserslist-config": "^1.0.5",
     "@sanity/pkg-utils": "^12.3.0",
     "@sanity/plugin-kit": "^10.0.8",
+    "@types/node": "^26.3.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "oxc-transform-react": "^0.145.0",
@@ -69,11 +70,6 @@
   "browserslist": "extends @sanity/browserslist-config",
   "engines": {
     "node": ">=20.19 <22 || >=22.12"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   },
   "sanityPlugin": {
     "verifyPackage": {
