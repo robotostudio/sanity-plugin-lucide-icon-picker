@@ -84,12 +84,18 @@ export function LucideIconInput(props: StringInputProps) {
   if (!value) {
     return (
       <>
+        {/* `width="fill"` so the empty state spans the field the way every other string input
+            does, and so it matches the selected state below, which is a block-level Card.
+            Left-justified for the same reason: a centred label reads as a dialog button rather
+            than as the field itself. */}
         <Button
           {...triggerProps}
           type="button"
           icon={AddIcon}
           text="Select icon"
           mode="ghost"
+          width="fill"
+          justify="flex-start"
           disabled={readOnly}
           onClick={openPicker}
         />
