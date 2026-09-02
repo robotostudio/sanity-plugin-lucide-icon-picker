@@ -1,7 +1,8 @@
 # @robotostudio/sanity-plugin-lucide-icon-picker
 
-Pick and preview [Lucide](https://lucide.dev) icons in Sanity Studio v6. All 2,035 icons,
-searchable, with each glyph loaded on demand rather than bundled into the Studio.
+Pick and preview [Lucide](https://lucide.dev) icons in Sanity Studio v6. Every icon your
+installed `lucide-react` ships — over 2,000 of them — searchable, with each glyph loaded on
+demand rather than bundled into the Studio.
 
 ## Install
 
@@ -83,8 +84,12 @@ building of our own. That matters: it is the same list `DynamicIcon` resolves ag
 every name the picker offers is guaranteed to render, and there is no conversion step that can
 drift from Lucide's spelling.
 
+Because the list is read from `lucide-react` rather than pinned here, upgrading it is all it
+takes to pick up new icons — this README deliberately does not quote a total, since it moves
+with almost every Lucide release.
+
 Glyphs are fetched per icon as you scroll, in windows of 120. Only the icons you actually look
-at are downloaded (~364 bytes each) instead of shipping all 2,035 in the Studio bundle.
+at are downloaded (~364 bytes each) instead of shipping the whole set in the Studio bundle.
 
 One wrinkle worth knowing: Lucide's list contains a few pairs that differ only in digit
 hyphenation and draw the same glyph — `arrow-down-0-1` / `arrow-down-01`, `grid-2x2` /
