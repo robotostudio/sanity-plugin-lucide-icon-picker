@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this
 project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-09-02
+
+Documentation only. No change to the plugin itself.
+
+### Changed
+
+- The README no longer quotes a fixed icon total. The catalogue is read from `iconNames` at
+  runtime, so the number moves with whatever `lucide-react` the Studio has installed —
+  verifying the published 1.0.0 against `lucide-react` 1.38.0 gave 2,049 icons, not the 2,035
+  the README claimed. One Lucide release was enough to make a hardcoded figure wrong.
+
 ## [1.0.0] - 2026-08-25
 
 First release. An in-house Lucide icon picker for Sanity Studio v6.
